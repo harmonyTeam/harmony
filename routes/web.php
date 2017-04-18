@@ -49,6 +49,9 @@ Route::put('/modifyAction/{id}/{user_id}', 'Board\BoardController@modifyAction')
 
 Route::get('/idCheck/{user_id}', 'Login\LoginController@idCheckAction');
 
+// 마이페이지 매칭 서비스 라우터
+Route::get('/myPage/matching/{user_id}', 'MyPage\MatchingController@playListAction');
+
 
 
 

@@ -51,6 +51,17 @@
                 </li>
 
 
+                <li class="">
+                    <a class="" href="#">마이페이지</a>
+                    <ul class="">
+                        <li><a href="" class="">추천 매칭</a></li>
+                    </ul>
+                    <ul class="">
+                        <li><a href="/myPage/matching/{user_id}" class="">플레이리스트</a></li>
+                    </ul>
+                </li>
+
+
 
                 <li class="">
                     <a class="" href="">게시판</a>
