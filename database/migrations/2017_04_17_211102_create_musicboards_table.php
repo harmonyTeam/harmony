@@ -14,7 +14,7 @@ class CreateMusicboardsTable extends Migration
     public function up()
     {
         Schema::create('musicboards', function (Blueprint $table) {
-            // 게시번호(기본키), 파일명, 사용자명, 추천수, 조회수, 작성날짜
+            // 게시번호(기본키), 파일명, 사용자번호, 추천수, 조회수, 작성날짜
 
             $table->increments('music_number');
             $table->string('file_name');

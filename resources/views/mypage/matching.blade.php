@@ -5,6 +5,9 @@
     <title></title>
   </head>
   <body>
-    dd
+    <?php
+      
+      echo "$userMusics";
+     ?>
   </body>
 </html>

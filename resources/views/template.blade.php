@@ -57,7 +57,7 @@
                         <li><a href="" class="">추천 매칭</a></li>
                     </ul>
                     <ul class="">
-                        <li><a href="/myPage/matching/{user_id}" class="">플레이리스트</a></li>
+                        <li><a href="/myPage/matching" class="">플레이리스트</a></li>
                     </ul>
                 </li>
 

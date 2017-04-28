@@ -16,5 +16,10 @@ class UsersTableSeeder extends Seeder
           // 'user_password' => bcrypt('password'),
           'user_pass' => '123123',
         ]);
+        App\User::create([
+          'user_id' => 'wlsdud',
+          // 'user_password' => bcrypt('password'),
+          'user_pass' => '123123',
+        ]);
     }
 }

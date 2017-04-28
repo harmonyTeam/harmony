@@ -24,7 +24,7 @@ echo "<html>
           <th>작성자</th>
           <th>날짜</th>";
 
-
+        echo "$boards";
         echo "<tr>";
         echo "<td>{$boards[0]['id']}</a>";
         echo "<td>{$boards[0]['title']}</a>";
