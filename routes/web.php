@@ -50,12 +50,23 @@ Route::put('/modifyAction/{id}/{user_id}', 'Board\BoardController@modifyAction')
 Route::get('/idCheck/{user_id}', 'Login\LoginController@idCheckAction');
 
 // 마이페이지 매칭 서비스 라우터
-// Route::get('/myPage/matching', 'MyPage\MusicBoardController@playListAction');
+Route::get('/myPage/matching', 'MyPage\MusicBoardController@playListAction');
 // Route::get('/myPage/matching/{user_id}', 'MyPage\MusicBoardController@playListAction');
 
-// 임시 마이페이지 매칭 라우터
-Route::post('/myPage/album', 'MyPage\MusicBoardController@albumListAction');
+/* 김진영 담당했던 곳*/
+// 임시 마이페이지 매칭 라우터(앨범 메인)
+Route::get('/myPage/album', 'Album\AlbumController@albumListAction');
 
+// 임시 마이페이지 매칭 라우터(앨범 추가) Route
+Route::get('/myPage/album/add', function(){
+    return view('mypage/albumAdd');
+});
+
+// 앨범추가할때 input값 넣는 액션명
+Route::post('/addAlbumAction', 'Album\AlbumController@addAlbumAction');
+
+//
+Route::get('/myPage/album/{user_id}', 'MyPage\MusicBoardController@playListAction');
 
 
 ?>

@@ -5,7 +5,6 @@ echo "<table class='table'>
     <th>제목</th>
     <th>작성자</th>
     <th>날짜</th>";
-echo "$boards";
 foreach ($boards as $board) {
   echo "<tr>";
   echo "<td>{$board['id']}</td>";

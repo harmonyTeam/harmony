@@ -18,71 +18,33 @@ class AlbumController extends Controller
     {
         //
     }
-    public function albumListAction(Request $request)
+    // public function albumListAction(Request $request) // GET 모드
+    public function albumListAction() // POST 모드
     {
       // 섹션으로 값가져오기
-      $user_id = $request->session()->get('user_id','');
+      $user_id = session('user_id');
 
-      $id = User::where('user_id',$user_id)->get();
-      echo $id[0]['id'];
-
-      $myAlbum = Album::where('user_id',$id[0]['id'])->get();
-
+      $myAlbum = Album::where('user_id',$user_id)->get();;
       return view('mypage/album', compact('myAlbum'));
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function addAlbumAction(Request $request)
     {
-        //
-    }
+      $user_id = $request->session()->get('user_id','');
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+      $album_title = $request->input('album_title');
+      $album_content = $request->input('album_content');
+      $album_picture = $request->input('album_picture');
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Album  $album
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Album $album)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Album  $album
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Album $album)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Album  $album
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Album $album)
-    {
-        //
+      $album = new Album;
+      $album->album_title = $album_title;
+      $album->album_picture = $album_picture;
+      $album->album_content = $album_content;
+      $album->user_id = $user_id;
+      $album->save();
+
+      echo "<script>location.href='myPage/album';</script>";
     }
 
     /**
@@ -96,3 +58,5 @@ class AlbumController extends Controller
         //
     }
 }
+
+?>
