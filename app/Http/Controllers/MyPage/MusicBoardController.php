@@ -33,9 +33,9 @@ class MusicBoardController extends Controller
         // echo $id[0]['id'];
 
         $userMusics = Musicboard::where('album_number',$user_id)->get();
-        // echo $userMusics;
         $allMusics = Musicboard::where('user_id',$id[0]['id'])->where('album_number',NULL)->get();
-        // echo $allMusics;
+
+
         // return view('mypage/album_details', compact('userMusics','allMusics'));
         return view('mypage/album_details')->with('userMusics',$userMusics)->with('allMusics',$allMusics);
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Album;
 
 use App\Album;
 use App\User;
+use App\MusicBoard;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -29,8 +30,12 @@ class AlbumController extends Controller
     }
     public function addAlbumAction(Request $request)
     {
-      $user_id = $request->session()->get('user_id','');
+      $sessionID = $request->session()->get('user_id','');
+      $user_id = User::where('user_id',$sessionID)->get();
 
+      $userMusics = Musicboard::where('user_id',$user_id[0]['id'])->get();
+      // echo count($userMusics);
+      $album_number = count($userMusics);
       $album_title = $request->input('album_title');
       $album_content = $request->input('album_content');
       $album_picture = $request->input('album_picture');
@@ -38,10 +43,11 @@ class AlbumController extends Controller
 
 
       $album = new Album;
+      $album->album_number = $album_number;
       $album->album_title = $album_title;
       $album->album_picture = $album_picture;
       $album->album_content = $album_content;
-      $album->user_id = $user_id;
+      $album->user_id = $sessionID;
       $album->save();
 
       echo "<script>location.href='myPage/album';</script>";
