@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MyList</title>
+    <script
+         src="http://code.jquery.com/jquery-3.2.1.slim.min.js"
+         integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+         crossorigin="anonymous"></script>
+    <style>
+    #one{
+         position:absolute;
+         top: 150px;
+         left: 300px;
+         background-color: yellow;
+         width: 50px;
+         height: 30px;
+    }
+    #two{
+         position:absolute;
+         top: 150px;
+         left: 350px;
+         background-color: #07F6F2;
+         width: 50px;
+         height: 30px;
+    }
+    #wree{
+      position:absolute;
+      top: 180px;
+      left: 300px;
+      border-style: solid;
+      border-width: 1px;
+      width: 700px; height: 500px;
+    }
+    #imge{
+      width: 120px; height: 120px;
+      position:absolute;
+      top: 150px;
+      left: 150px;
+    }
+    #pj{
+      position:absolute;
+      top: 130px;
+      left: 25px;
+      text-align: center;
+    }
+    tr{
+      height:0px;
+    }
+    #aa{
+      position:absolute;
+      top: 130px;
+      left: 25px;
+      text-align: center;
+    }
+    </style>
+    <!-- <script>
+        function change()
+        {
+            // document.all("wree")
+            // .innerHTML=
+            // "<img src='asd.jpg' id='imge'></img><table border='1' id='pj'><tr><td>안녕하세요</td></tr><tr><td>dasdasdasd</td></tr><tr><td>dasgag</td></tr></table>";
+
+            var msg = document.getElementById("aa");
+            var container = document.getElementById("wree");
+            container.appendChild(msg);
+            //content라는 id를 가진 요소 그안에 fineprint라는 id를 가진요소 존재 둘사이에 추가하는것
+        }
+    </script> -->
+    <script type="text/javascript">
+    function newsViewer(strValue)
+    {
+      var msg = document.getElementById("news_1");
+      var container = document.getElementById("wree");
+      container.appendChild(msg);
+    	var newsLayer1 = document.getElementById('news_1');
+    	var newsLayer2 = document.getElementById('news_2');
+    	var newsLayer3 = document.getElementById('news_3');
+
+    	if (strValue == "2") {
+    		newsLayer1.style.display = "none";
+    		newsLayer2.style.display = "block";
+    		newsLayer3.style.display = "none";
+    	}
+    	else {
+    		newsLayer1.style.display = "block";
+    		newsLayer2.style.display = "none";
+    		newsLayer3.style.display = "none";
+    	}
+
+    }
+    </script>
+  </head>
+  <body>
+    <div id="one">
+      오디오
+    </div>
+    <input type="button" value="첫번째 방법" onClick="javascript:newsViewer(1);" id="one">
+    <input type="button" value="첫번째 방법" onClick="javascript:newsViewer(2);" id="two">
+    <div id="wree">
+      안녕
+    </div>
+    <!-- <div id="aa">
+      <img src="asd.jpg" id="imge"></img>
+      <h4>dksasdaslgajlgkjaklsdjklasd</h4>
+    </div> -->
+
+    <div id="news_1">
+      <img src="asd.jpg" id="imge"></img>
+      <h4>dksasdaslgajlgkjaklsdjklasd</h4>
+    </div>
+    <div id="news_2">
+       <h4>동영상 목록입니다.</h4>
+    </div>
+
+  </body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+
+        function change()
+        {
+            document.all("div_name").innerHTML="첫번째 방법";
+        }
+
+        function change_()
+        {
+            document.getElementById("div_name").innerHTML = "두번째 방법";
+        }
+
+    </script>
+  </head>
+  <body>
+    <div id="div_name"> Content </div>
+<input type="button" value="첫번째 방법" onClick="change();">
+<input type="button" value="두번째 방법" onClick="change_();">
+  </body>
+</html> -->
+
+
+
+
+<!--
+<script type="text/javascript">
+function newsViewer(strValue)
+{
+	var newsLayer1 = document.getElementById('news_1');
+	var newsLayer2 = document.getElementById('news_2');
+	var newsLayer3 = document.getElementById('news_3');
+
+	if (strValue == "2") {
+		newsLayer1.style.display = "none";
+		newsLayer2.style.display = "block";
+		newsLayer3.style.display = "none";
+	}
+	else if (strValue == "3") {
+		newsLayer1.style.display = "none";
+		newsLayer2.style.display = "none";
+		newsLayer3.style.display = "block";
+	}
+	else {
+		newsLayer1.style.display = "block";
+		newsLayer2.style.display = "none";
+		newsLayer3.style.display = "none";
+	}
+}
+</script>
+
+
+<a href="javascript:newsViewer(1)">버튼1</a>
+
+<div id="news_1">
+버튼1 클릭시 보여질 내용
+</div>
+
+<a href="javascript:newsViewer(2)">버튼2</a>
+
+<div id="news_2">
+버튼2 클릭시 보여질 내용
+</div>
+
+<a href="javascript:newsViewer(3)">버튼3</a>
+
+<div id="news_3">
+버튼3 클릭시 보여질 내용
+</div> -->
