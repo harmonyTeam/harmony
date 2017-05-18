@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+      $(".tab_content").hide();
+      $("ul.tab li:first").addClass("active").show();
+      $(".tab_content:first").show();
+      $("ul.tab li").click(function() {
+          $("ul.tab li").removeClass("active");
+          $(this).addClass("active");
+          $(".tab_content").hide();
+          var activeTab = $(this).find("a").attr("href");
+          $(activeTab).fadeIn();
+          return false;
+      });
+    });
+  </script>
+
+<style media="screen">
+ul.tab {
+  margin: 0;
+  padding: 0;
+  float: left;
+  list-style: none;
+  height: 32px;
+  width: 100%;
+}
+ul.tab li {
+  float: left;
+  margin: 0;
+  padding: 0;
+  height: 31px;
+  line-height: 31px;
+  border: 1px solid #999;
+  border-left: none;
+  margin-bottom: -1px;
+  overflow: hidden;
+  position: relative;
+  background: #e0e0e0;
+}
+ul.tab li a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+  font-size: 1.2em;
+  padding: 0 20px;
+  border: 1px solid #fff;
+  outline: none;
+}
+ul.tab li a:hover {
+  background: #ccc;
+}
+html ul.tab li.active, html ul.tab li.active a:hover  {
+  background: #fff;
+  border-bottom: 1px solid #fff;
+}
+#container {
+  position:absolute;
+  top: 180px;
+  left: 300px;
+  border: 1px solid #999;
+  overflow: hidden;
+  clear: both;
+  float: left;
+  /*width: 100%;*/
+  background: #fff;
+  width: 58%;
+  /*height: 45%;*/
+}
+.tab_content {
+  padding: 20px;
+  font-size: 1.2em;
+}
+
+img{
+  width: 110px;
+  height: 110px;
+}
+table{
+  border-spacing: 20px;
+  border-collapse: separate;
+  font-size: 70%;
+}
+div.top{
+  padding-top: 20px;
+}
+#tbl {border-spacing:0px;
+      padding-left:10px;}
+#tbl td {padding-bottom: 2px;
+         padding-left: 25px;
+       }
+#aa {
+  position:absolute;
+  top: 550px;
+  left: 450px;
+}
+#cc{
+  position:absolute;
+  top: 670px;
+  left: 28%;
+  border: 1px solid #CBAC9A;
+  border-width:3px;
+  border-style:solid;
+}
+#dd{
+  position:absolute;
+  top: 550px;
+  left: 800px;
+}
+#ee{
+  position:absolute;
+  top: 670px;
+  left: 55%;
+  border: 1px solid #CBAC9A;
+  border-width:3px;
+  border-style:solid;
+}
+/*<table border="1">*/
+</style>
+  </head>
+  <body>
+    <div id="container">
+    <ul class="tab">
+        <li class="active"><a href="#tab1">오디오</a></li>
+        <li><a href="#tab2">동영상</a></li>
+    </ul>
+    <div class="tab_container">
+        <div id="tab1" class="tab_content" style="overflow-y:scroll; padding:10px;">
+            <!--Content-->
+            <table id="tbl" >
+              <div class="top">
+                <tr>
+                  <td style="text-align:center"><img src="top_logo.jpg" style="display:block;"></td>
+                  <td style="text-align:center"><img src="top_logo.jpg" style="display:block;"></td>
+                  <td><img src="top_logo.jpg" style="display:block;"></td>
+                  <td><img src="top_logo.jpg" style="display:block;"></td>
+                  <td><img src="top_logo.jpg" style="display:block;"></td>
+                </tr>
+              </div>
+            <tr >
+              <td style="text-align:center">곡제목 : </td>
+              <td>곡제목 : </td>
+              <td>곡제목 : </td>
+              <td>곡제목 : </td>
+              <td>곡제목 : </td>
+            </tr>
+            <tr>
+              <td style="text-align:center">합주자 명</td>
+              <td>합주자 명</td>
+              <td>합주자 명</td>
+              <td>합주자 명</td>
+              <td>합주자 명</td>
+            </tr>
+            <tr>
+              <td style="text-align:center">주성민</td>
+              <td>주성민</td>
+              <td>주성민</td>
+              <td>주성민</td>
+              <td>주성민</td>
+            </tr>
+            <tr>
+              <td style="text-align:center">주성민</td>
+              <td>주성민</td>
+              <td>주성민</td>
+              <td>주성민</td>
+              <td>주성민</td>
+            </tr>
+            <tr>
+              <td style="text-align:center">주성민</td>
+              <td>주성민</td>
+              <td>주성민</td>
+              <td>주성민</td>
+              <td>주성민</td>
+            </tr>
+
+
+                <!-- <img src="asd.jpg"><div>글자들</div>
+                <img src="asd.jpg"><div>글자들</div> -->
+          </table>
+        </div>
+        <div id="tab2" class="tab_content" style="display: none;">
+           <!--Content-->
+            <h1>bSector</h1>
+            <ul>
+                <li>tab예제 섹터2</li>
+                <li>tab예제 섹터2</li>
+                <li>tab예제 섹터2</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<img src="muee.jpg" id="aa">
+<div id="cc">
+<pre id="bb" style="text-align:center">
+오디오 합주 입니다
+오디오 합주는 정말 매력적인 일입니다.
+매일 아침 일어나서 함께 합주를 하면 어떨까요?
+오늘오늘 매일일
+아이유 처럼 함께 해나갑시다
+</pre>
+</div>
+
+<img src="video.jpg" id="dd" style="display:block">
+<div id="ee">
+<pre id="bb" style="text-align:center">
+동영상 합주 입니다
+오디오 합주는 정말 매력적인 일입니다.
+매일 아침 일어나서 함께 합주를 하면 어떨까요?
+오늘오늘 매일일
+
+</pre>
+</div>
+
+
+  </body>
+</html>
