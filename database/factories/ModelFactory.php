@@ -22,3 +22,20 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Project::class,
+          function(Faker\Generator $faker){
+            $min=App\User::min('id');
+            $max=App\User::max('id');
+            return[
+              'user_id' => $faker->numberBetween($min,$max),
+              'name'=>substr($faker->word,0,20),
+              'description'=>$faker->sentence,
+              'created_at'=>$faker->dateTimeBetween($startDate='-2 years',
+                                                    $endDate='-1 years'),
+              'updated_at'=>$faker->dateTimeBetween($startDate='-1 years',
+                                                    $endDate='now'),
+            ];
+
+
+});

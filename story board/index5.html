@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ss</title>
+    <template>
+  <div id="showChartWrap">
+  </div>
+</template>
+<script
+        src="http://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<style>
+  #showChartWrap text {
+    font-size: 14px;
+    font-family: koverwatch;
+  }
+
+  .play-button {
+    margin-left: 10px;
+    margin-bottom: 15px;
+    font-style: italic;
+    cursor: pointer;
+    color: grey;
+  }
+
+  .play-button:hover {
+    color: black;
+  }
+
+  .buttons-container {
+    margin: 0 auto;
+  }
+
+  .button {
+    display:inline-block;
+    margin-left: 10px;
+    font-weight: lighter;
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid #aaa;
+  }
+
+  .selected {
+    font-weight: bold;
+  }
+
+  .clearfix {
+    clear: both;
+  }
+
+  .bar {
+    fill: rgba(40,53,79,.95);
+  }
+
+  .bar-label {
+    text-anchor: end;
+  }
+
+  .axis-label {
+    text-anchor: middle;
+    font-size: 13px;
+  }
+
+  .x.axis line {
+    fill: none;
+    stroke: #000;
+  }
+
+  .x.axis text {
+    font-size: 13px;
+  }
+
+  .axis path {
+    display:  }
+
+</style>
+  </head>
+  <body>
+<script>
+import * as d3 from 'd3';
+export default {
+  name: 'd3-chart',
+  data() {
+    return {
+
+    }
+  },
+  components: {
+
+  },
+  mounted() {
+    this.showchart();
+  },
+  methods: {
+    showchart: function () {
+      const year = 2010;
+      const buttonYears = [1950, 1955, 1960, 1965, 1970, 1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2020,
+        2025, 2030, 2035, 2040, 2045, 2050
+      ];
+      const minLength = Math.min(window.innerWidth,window.innerHeight-560);
+      const width = minLength;
+      const height = minLength;
+
+      const showChartWrap = d3.select("#showChartWrap");
+        /*
+        x는 0에서 너비까지 쭈욱 선을 긋는다.
+        y는 밴드를 사용, 안의 각각의 padding을 넣을 수 있다.
+        */
+      const x = d3.scaleLinear()
+        .range([0, width]);
+      const y = d3.scaleBand()
+        .paddingInner([0.1])
+        .paddingOuter([0.1])
+        .range([0, height])
+      const xAxis = d3.axisTop()
+        .scale(x)
+        .ticks(5, ",%")
+
+      const yAxis = d3.axisLeft()
+        .scale(y)
+      showChartWrap.append("h2")
+        .text("Age distribution of the world");
+
+      const playAll = showChartWrap.append("div")
+        .attr("class", "play-button")
+        .text("▶ PLAY ALL YEARS");
+
+      const buttons = showChartWrap.append("div")
+        .attr("class", "buttons-container")
+        .selectAll("div").data(buttonYears)
+        .enter().append("div")
+        .text(d => d)
+        .attr("class", d => {
+          if (d == year)
+            return "button selected";
+          else
+            return "button";
+        });
+
+      showChartWrap.append("div")
+        .attr("class", "clearfix")
+      const data = require('../assets/allData.json');
+         /*
+         y축은 age가 band에서 각각 표시
+         x축은 0 ~ elment의 max까지 linear하게 표시
+        */
+      let popData = data.filter(element => element.year == year);
+      x.domain([0, d3.max(data, element => element.value)]);
+      y.domain(popData.map(element => element.age));
+      const svg = showChartWrap.append("svg")
+        .attr("width", width)
+        .attr("height", height+30)
+        .append("g")
+        .attr("transform", "translate(" + 100 + "," +30 + ")");
+
+      const barGroup = svg.append("g")
+        .attr("class", "bar");
+
+      let keys = (d) => d.age;
+      const bars = barGroup.selectAll("rect")
+        .data(popData, keys)
+        .enter().append("rect")
+        .attr("x", 0)
+        .attr("y", function (d) {
+          return y(d.age)
+        })
+        .attr("width", function (d) {
+          return x(d.value)
+        })
+         /*
+        bandwidth():band의 너비를 각각 정한다.
+        */
+        .attr("height", y.bandwidth());
+
+      svg.append("g")
+        .call(xAxis)
+        .attr("class", "x axis")
+
+      svg.append("g")
+        .call(yAxis)
+        .attr("class", "y axis")
+
+      buttons.on("click", function (d) {
+        update(d);
+        clearInterval(playInterval);
+      });
+
+      let playInterval;
+      playAll.on("click", function () {
+        let i = 0;
+        playInterval = setInterval(function () {
+          update(buttonYears[i]);
+          i++;
+          if (i > buttonYears.length - 1) {
+            clearInterval(playInterval);
+          }
+        }, 700);
+      });
+
+      function update(updateYear) {
+        d3.select(".selected")
+          .classed("selected", false);
+
+        buttons
+          .filter(function (d) {
+            return d == updateYear;
+          })
+          .classed("selected", true)
+
+        popData = data.filter(function (element) {
+          return element.year == updateYear
+        });
+
+        bars.data(popData, keys)
+          .transition()
+          .duration(1000)
+          .ease(d3.easeElastic)
+          .attr("width", function (d) {
+            return x(d.value);
+          });
+      };
+    }
+  }
+}
+</script>
+  </body>
+</html>
