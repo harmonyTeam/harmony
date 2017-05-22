@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('musicQuitous/audioHarmony','MusicQuitousController@audioHarmony');
+Route::post('blobTest','MusicQuitousController@test');
